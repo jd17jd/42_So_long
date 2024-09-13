@@ -6,7 +6,7 @@
 #    By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/09/13 15:44:47 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/09/13 22:03:32 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,19 @@ COLOR_VERDE = "\033[32m"
 # Lista de archivos fuente y objetos
 SOURCES = 	src/main.c \
 			src/errors/errors.c \
+			src/free/free.c \
 			src/init/init.c \
-			src/parser/parse.c
+			src/parser/parse.c \
+			src/parser/utils_2.c \
+			src/parser/utils.c
 
 OBJECTS =	src/main.o \
 			src/errors/errors.o \
+			src/free/free.o \
 			src/init/init.o \
-			src/parser/parse.o
+			src/parser/parse.o \
+			src/parser/utils_2.o \
+			src/parser/utils.o
 
 # Librería
 LIBFT = lib/libft.a
@@ -48,13 +54,25 @@ src/errors/errors.o: src/errors/errors.c
 	@echo "Compiling errors.c"
 	@$(CC) $(CFLAGS) -c src/errors/errors.c -o src/errors/errors.o
 
+src/free/free.o: src/free/free.c
+	@echo "Compiling free.c"
+	@$(CC) $(CFLAGS) -c src/free/free.c -o src/free/free.o
+
 src/init/init.o: src/init/init.c
 	@echo "Compiling init.c"
 	@$(CC) $(CFLAGS) -c src/init/init.c -o src/init/init.o
 
-src/parser/parser.o: src/parser/parser.c
-	@echo "Compiling errors.c"
-	@$(CC) $(CFLAGS) -c src/parser/parser.c -o src/parser/parser.o
+src/parser/parse.o: src/parser/parse.c
+	@echo "Compiling parse.c"
+	@$(CC) $(CFLAGS) -c src/parser/parse.c -o src/parser/parse.o
+	
+src/parser/utils_2.o: src/parser/utils_2.c
+	@echo "Compiling utils_2.c"
+	@$(CC) $(CFLAGS) -c src/parser/utils_2.c -o src/parser/utils_2.o
+
+src/parser/utils.o: src/parser/utils.c
+	@echo "Compiling utils.c"
+	@$(CC) $(CFLAGS) -c src/parser/utils.c -o src/parser/utils.o
 
 all: $(NAME)
 
