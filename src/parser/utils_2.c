@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:33:56 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/13 22:36:14 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/17 23:14:17 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,87 @@ void	aux_check_borders(char **map, int last_row, int last_col)
 		i++;
 	}
 }
-
-void	check_borders(char **map)
+/* Check if the borders are all covered by 1 */
+void	check_borders(t_map *map_data)
 {
-	int	last_row;
-	int	last_col;
+	char	**map = map_data->map;
+	int		last_row;
+	int		last_col;
 
-	// Calcular la última fila
 	last_row = 0;
 	while (map[last_row])
 		last_row++;
-	last_row--;  // índice de la última fila (ajustar)
-
-	// Calcular la última columna (restar 1 al valor de last_col)
+	map_data->rows = last_row; //METO FILAS MAPA
 	last_col = 0;
 	while (map[0][last_col])
 		last_col++;
-	last_col--;  // índice de la última columna (ajustar)
+	map_data->cols = last_col - 1; //METO COLUMNAS MAPA
+	aux_check_borders(map, map_data->rows-1, map_data->cols-1);
+}
 
-	// Debug: imprimir el valor de last_row y last_col
-	printf("last_row: %d, last_col: %d\n", last_row, last_col);
+int	dfs(t_map *map_data, int x, int y) // Comprobar esto
+{
+	char	**map;
+	int		rows;
+	int		cols;
 
-	// Llamar a la función para verificar los bordes
-	aux_check_borders(map, last_row, last_col);
+	map = map_data->map;
+	rows = map_data->rows-1;
+	cols = map_data->cols-1;
+
+    if (x < 0 || x >= rows || y < 0 || y >= cols || map[x][y] == '1')
+        return (0);
+    if (map[x][y] == 'E')
+        return (1);
+    if (map[x][y] == 'V' || map[x][y] == 'P' || map[x][y] == '0' || map[x][y] == 'C')
+        map[x][y] = 'V';
+    if (dfs(map_data, x - 1, y))
+		return (1); // Arriba
+    if (dfs(map_data, x + 1, y))
+		return (1); // Abajo
+    if (dfs(map_data, x, y - 1))
+		return (1); // Izquierda
+    if (dfs(map_data, x, y + 1))
+		return (1); // Derecha
+    return (0); // No se encontró un camino
+}
+
+void 	player_position(t_map *map_data, int *player_x, int *player_y)
+{
+	char	**map;
+	int		i;
+	int		j;
+	int		last_row;
+	int		last_col;
+
+	map = map_data->map;
+	last_row = map_data->rows-1;
+	last_col = map_data->cols-1;
+	i = 0;
+    while (i <= last_row)
+    {
+        j = 0;
+        while (j <= last_col)
+        {
+            if (map[i][j] == 'P')
+            {
+                *player_x = i;
+                *player_y = j;
+                return;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+int	check_correct_path(t_map *map_data)
+{
+	int	player_x;
+	int	player_y;
+
+	player_x = 0;
+	player_y = 0;
+	player_position(map_data, &player_x, &player_y); //Ya existe jugador previamente
+	return (dfs(map_data, player_x, player_y));
 }

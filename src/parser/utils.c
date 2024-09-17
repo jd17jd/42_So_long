@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/13 21:57:44 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/17 21:49:33 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	number_lines(int fd)
 	return (line_count);
 }
 
-char	**file_to_array(char *complete_path, int fd)
+char	**file_to_array(t_map *map_data, int fd)
 {
 	int		i;
 	char	**res;
@@ -39,7 +39,7 @@ char	**file_to_array(char *complete_path, int fd)
 	int		lines;
 
 	lines = number_lines(fd);
-	fd = open(complete_path, O_RDONLY);
+	fd = open(map_data->path_name, O_RDONLY);
 	res = ft_calloc((lines + 1), sizeof(char *));
 	if (!res)
 		ft_error("Error\nUnable to allocate memory\n", 5);
@@ -72,10 +72,10 @@ void	check_size(char **map)
 
 /*
 COMPROBACIONES:
-    - 1 salida, >1 objeto, 1 jugador
-    - == numero de columns
-    - rodeado de muros
-    - camino valido
+    - 1 salida, >1 objeto, 1 jugador YA
+    - == numero de columns YA
+    - rodeado de muros YA
+    - camino valido AHORA
 */
 
 void	aux_check_number(char **map, int player, int exit, int objects)

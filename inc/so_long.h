@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/13 22:34:49 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/17 23:10:28 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_map
 {
 	void	*mlx; /* Conexion con la minilibx */
 	void	*mlx_win; /* Pointer to the window where the game is renderized */
+	char	*path_name;
 	char	**map;
 	int		rows;
 	int		cols;
@@ -52,16 +53,19 @@ void	free_array(char **array);
 void	init(t_map	*map);
 
 /* Parse */
-void	check_conditions_map(char *filename, int fd);
-void	parse(char *filename);
+void	check_conditions_map(t_map *map_data, int fd);
+void	parse(char *filename, t_map *map_data);
 
 /* Utils_2 */
 void	aux_check_borders(char **map, int last_row, int last_col);
-void	check_borders(char **map);
+void	check_borders(t_map *map_data);
+int		dfs(t_map *map_data, int x, int y);
+void 	player_position(t_map *map_data, int *player_x, int *player_y);
+int		check_correct_path(t_map *map_data);
 
 /* Utils */
 int		number_lines(int fd);
-char	**file_to_array(char *filename, int fd);
+char	**file_to_array(t_map *map_data, int fd);
 void    check_size(char **map);
 void	aux_check_number(char **map, int player, int exit, int objects);
 void	check_number_cells(char **map);
