@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/18 15:49:15 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:52:34 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "../lib/inc/libft.h"
 # include "../lib/src/gnl/get_next_line_bonus.h"
 # include "../lib/src/gnl/get_next_line.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
 
 # define ESC 53
@@ -29,6 +30,7 @@
 # define S 1
 # define D 2
 # define W 13
+
 # define PATH_LEVELS "resources/maps/valid/"
 
 /* Structure for the state of the map */
@@ -50,7 +52,7 @@ void	ft_error(char *str, int code);
 void	free_array(char **array);
 
 /* Init */
-void	init(t_map	*map);
+void	init_image(t_map *map_data);
 
 /* Parse */
 void	check_conditions_map(t_map *map_data, int fd);

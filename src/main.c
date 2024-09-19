@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:21:57 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/17 21:39:02 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/19 19:34:17 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	map_name = argv[1];
-	check_args(argc, map_name);
-	parse(map_name, &map_data);
-	init(&map_data);
+	check_args(argc, map_name); //CHECKEO ARGUMENTOS
+	parse(map_name, &map_data); //PARSEO ENTRADA
+	init_image(&map_data); //INICIALIZACION DE GRAFICOS
+	
+	free(map_data.path_name); //LIBERO PATH
+	free_array(map_data.map); //LIBERO MAP
 	return (0);
 }

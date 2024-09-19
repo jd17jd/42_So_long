@@ -6,7 +6,7 @@
 #    By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/09/13 22:03:32 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/09/19 20:58:43 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,20 @@ OBJECTS =	src/main.o \
 # Librería
 LIBFT = lib/libft.a
 
+# Ruta a la MLX42
+MLX42_DIR = MLX42/build
+MLX42 = $(MLX42_DIR)/libmlx42.a
+GLFW = -lglfw
+MLX42_INC = -I ./include
+LIBS = $(MLX42) -ldl -lglfw -lm
+
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror $(MLX42_INC)
 RM := rm -f
 
 # Regla principal
-$(NAME): $(OBJECTS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJECTS) -L lib -lft -o $(NAME)
+$(NAME): $(OBJECTS) $(LIBFT) $(MLX42)
+	@$(CC) $(CFLAGS) $(OBJECTS) -L lib -lft $(LIBS) -o $(NAME)
 	@echo $(COLOR_VERDE) "Created $(NAME)" $(COLOR_RESET)
 
 # Reglas de compilación para cada archivo objeto
@@ -74,7 +81,10 @@ src/parser/utils.o: src/parser/utils.c
 	@echo "Compiling utils.c"
 	@$(CC) $(CFLAGS) -c src/parser/utils.c -o src/parser/utils.o
 
-all: $(NAME)
+all: libmlx $(NAME)
+
+libmlx:
+	@cmake $(MLX42_DIR) -B $(LIBMLX) && make -C $(LIBMLX) -j4
 
 # Limpiar archivos objeto
 clean:
