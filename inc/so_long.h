@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/17 23:10:28 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:49:15 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	aux_check_borders(char **map, int last_row, int last_col);
 void	check_borders(t_map *map_data);
 int		dfs(t_map *map_data, int x, int y);
 void 	player_position(t_map *map_data, int *player_x, int *player_y);
-int		check_correct_path(t_map *map_data);
+void	check_correct_path(t_map *map_data);
 
 /* Utils */
 int		number_lines(int fd);

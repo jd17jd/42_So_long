@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:33:56 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/17 23:14:17 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/18 15:54:14 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,32 @@ void	check_borders(t_map *map_data)
 	aux_check_borders(map, map_data->rows-1, map_data->cols-1);
 }
 
-int	dfs(t_map *map_data, int x, int y) // Comprobar esto
+int dfs(t_map *map_data, int x, int y)
 {
 	char	**map;
 	int		rows;
 	int		cols;
 
 	map = map_data->map;
-	rows = map_data->rows-1;
-	cols = map_data->cols-1;
-
-    if (x < 0 || x >= rows || y < 0 || y >= cols || map[x][y] == '1')
-        return (0);
-    if (map[x][y] == 'E')
-        return (1);
-    if (map[x][y] == 'V' || map[x][y] == 'P' || map[x][y] == '0' || map[x][y] == 'C')
-        map[x][y] = 'V';
-    if (dfs(map_data, x - 1, y))
-		return (1); // Arriba
-    if (dfs(map_data, x + 1, y))
-		return (1); // Abajo
-    if (dfs(map_data, x, y - 1))
-		return (1); // Izquierda
-    if (dfs(map_data, x, y + 1))
-		return (1); // Derecha
-    return (0); // No se encontró un camino
+	rows = map_data->rows;
+	cols = map_data->cols;
+	if (x < 0 || x >= rows || y < 0 || y >= cols)
+		return (0);
+	if (map[x][y] == 'E')
+		return (1);
+	if (map[x][y] == 'V' || map[x][y] == '1')
+		return (0);
+	if (map[x][y] == 'P' || map[x][y] == '0' || map[x][y] == 'C')
+		map[x][y] = 'V';
+	if (dfs(map_data, x - 1, y)) // Arriba
+		return (1);
+	if (dfs(map_data, x + 1, y)) // Abajo
+		return (1);
+	if (dfs(map_data, x, y - 1)) // Izquierda
+		return (1);
+	if (dfs(map_data, x, y + 1)) // Derecha
+		return (1);
+	return (0); // No se encontró un camino
 }
 
 void 	player_position(t_map *map_data, int *player_x, int *player_y)
@@ -105,13 +106,16 @@ void 	player_position(t_map *map_data, int *player_x, int *player_y)
     }
 }
 
-int	check_correct_path(t_map *map_data)
+void	check_correct_path(t_map *map_data)
 {
+	int res;
 	int	player_x;
 	int	player_y;
 
 	player_x = 0;
 	player_y = 0;
 	player_position(map_data, &player_x, &player_y); //Ya existe jugador previamente
-	return (dfs(map_data, player_x, player_y));
+	res = dfs(map_data, player_x, player_y);
+	if (res == 0)
+		ft_error("Error\nThere's no vallid path from P to E\n", 10);
 }
