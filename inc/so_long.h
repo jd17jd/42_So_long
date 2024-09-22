@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/19 19:52:34 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/22 02:14:36 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,18 @@
 # include "../lib/src/gnl/get_next_line.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
-
 # define ESC 53
 # define A 0
 # define S 1
 # define D 2
 # define W 13
+
+# define EMPTY "resources/sprites/Mandatory/0-Empty/empty.png"
+# define WALL "resources/sprites/Mandatory/1-Walls/wall.png"
+# define COLLECT "resources/sprites/Mandatory/C-Collect/collect.png"
+# define EXIT "resources/sprites/Mandatory/E-Exit-portal/portal.png"
+# define PLAYER "resources/sprites/Mandatory/P-Player-pac-man/Moving.png"
+
 
 # define PATH_LEVELS "resources/maps/valid/"
 
@@ -42,6 +48,11 @@ typedef struct s_map
 	char	**map;
 	int		rows;
 	int		cols;
+	void	*empty;
+	void	*wall;
+	void	*collect;
+	void	*exit;
+	void	*player;
 }	t_map;
 
 /* Errors */

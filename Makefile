@@ -6,7 +6,7 @@
 #    By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/09/19 20:58:43 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/09/21 20:44:09 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,24 +33,36 @@ OBJECTS =	src/main.o \
 			src/parser/utils_2.o \
 			src/parser/utils.o
 
-# Librería
-LIBFT = lib/libft.a
+# Ruta a la libft
+LIBFT_DIR = lib
+LIBFT = $(LIBFT_DIR)/libft.a
 
 # Ruta a la MLX42
-MLX42_DIR = MLX42/build
-MLX42 = $(MLX42_DIR)/libmlx42.a
-GLFW = -lglfw
-MLX42_INC = -I ./include
-LIBS = $(MLX42) -ldl -lglfw -lm
+MLX42_DIR = MLX42
+BUILD_DIR = $(MLX42_DIR)/build
+MLX42 = $(BUILD_DIR)/libmlx42.a
 
+# Flags de compilacion
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror $(MLX42_INC)
+CFLAGS := -Wall -Wextra -Werror
 RM := rm -f
+RMDIR := rm -rf
+MLX42_INC := -I ./include
+LIBS := $(MLX42) -ldl -lglfw -lm
 
 # Regla principal
 $(NAME): $(OBJECTS) $(LIBFT) $(MLX42)
-	@$(CC) $(CFLAGS) $(OBJECTS) -L lib -lft $(LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJECTS) -L $(LIBFT_DIR) -lft $(LIBS) -o $(NAME)
 	@echo $(COLOR_VERDE) "Created $(NAME)" $(COLOR_RESET)
+
+# Compilar MLX42
+$(MLX42):
+	@cmake -B $(BUILD_DIR) $(MLX42_DIR)
+	@cmake --build $(BUILD_DIR) -j4
+
+# Compilar la librería
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_DIR)
 
 # Reglas de compilación para cada archivo objeto
 src/main.o: src/main.c
@@ -81,28 +93,24 @@ src/parser/utils.o: src/parser/utils.c
 	@echo "Compiling utils.c"
 	@$(CC) $(CFLAGS) -c src/parser/utils.c -o src/parser/utils.o
 
-all: libmlx $(NAME)
-
-libmlx:
-	@cmake $(MLX42_DIR) -B $(LIBMLX) && make -C $(LIBMLX) -j4
+# Objetivos
+all: $(MLX42) $(LIBFT)
 
 # Limpiar archivos objeto
 clean:
 	@$(RM) $(OBJECTS)
-	@$(MAKE) -C lib clean
+	@$(MAKE) -C $(LIBFT_DIR) clean
+	@$(RMDIR) $(BUILD_DIR)
 	@echo $(COLOR_VERDE) "All objects cleaned" $(COLOR_RESET)
 
 # Limpiar todo
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE) -C lib fclean
+	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(RMDIR) $(BUILD_DIR)
 	@echo $(COLOR_VERDE) "All executable cleaned" $(COLOR_RESET)
 
 # Recompilar todo
 re: fclean all
-
-# Compilar la librería
-$(LIBFT):
-	@$(MAKE) -C lib
 
 .PHONY: all clean fclean re
