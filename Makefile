@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+         #
+#    By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/09/21 20:44:09 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/09/26 12:19:27 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ src/parser/utils.o: src/parser/utils.c
 	@$(CC) $(CFLAGS) -c src/parser/utils.c -o src/parser/utils.o
 
 # Objetivos
-all: $(MLX42) $(LIBFT)
+all: $(NAME) $(MLX42) $(LIBFT)
 
 # Limpiar archivos objeto
 clean:
