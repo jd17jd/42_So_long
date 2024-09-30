@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:34:37 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/22 02:49:31 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/30 21:57:23 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	init_image(t_map *map_data)
 	int	width;
 	int	height;
 
-	width = map_data->cols * 56;
-	height = map_data->rows * 56;
+	width = map_data->size_area->x * 56;
+	height = map_data->size_area->y * 56;
 	if (!(map_data->mlx = mlx_init(width, height, "PAC-MAN", true)))
 		ft_error("Error\nImpossible to initiate the lib\n", 11);
 	if (!(map_data->mlx_win = mlx_new_image(map_data->mlx, width, height)))

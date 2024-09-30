@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/17 21:49:33 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:15:59 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ COMPROBACIONES:
     - 1 salida, >1 objeto, 1 jugador YA
     - == numero de columns YA
     - rodeado de muros YA
-    - camino valido AHORA
+    - camino valido COMING
 */
 
 void	aux_check_number(char **map, int player, int exit, int objects)

@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/22 02:14:36 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/09/30 19:48:28 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,23 @@
 
 # define PATH_LEVELS "resources/maps/valid/"
 
+/* Structure for the representation of a coordenate */
+typedef struct	s_point
+{
+	int x;
+	int y;
+} t_point;
+
+
 /* Structure for the state of the map */
 typedef struct s_map
 {
 	void	*mlx; /* Conexion con la minilibx */
 	void	*mlx_win; /* Pointer to the window where the game is renderized */
-	char	*path_name;
-	char	**map;
-	int		rows;
-	int		cols;
+	char	*path_name; /* Ya inicializado */
+	char	**map; /* Ya inicializado */
+	t_point	*p_player; /* Ya inicializado (NO liberado)*/
+	t_point	*size_area; /* Ya inicializado (NO liberado)*/
 	void	*empty;
 	void	*wall;
 	void	*collect;
@@ -72,7 +80,7 @@ void	parse(char *filename, t_map *map_data);
 /* Utils_2 */
 void	aux_check_borders(char **map, int last_row, int last_col);
 void	check_borders(t_map *map_data);
-int		dfs(t_map *map_data, int x, int y);
+// int		dfs(t_map *map_data, int x, int y);
 void 	player_position(t_map *map_data, int *player_x, int *player_y);
 void	check_correct_path(t_map *map_data);
 

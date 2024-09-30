@@ -52,5 +52,5 @@
 
 Pasos:
 1. Checkeo de argumentos. Hecho
-2. Parseo mapa. En proceso.
+2. Parseo mapa. Hecho
 3. Inicialización mapa. Siguiente
