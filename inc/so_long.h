@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/30 19:48:28 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/02 12:32:22 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_map
 	char	*path_name; /* Ya inicializado */
 	char	**map; /* Ya inicializado */
 	t_point	*p_player; /* Ya inicializado (NO liberado)*/
-	t_point	*size_area; /* Ya inicializado (NO liberado)*/
+	t_point	*area; /* Ya inicializado (NO liberado)*/
 	void	*empty;
 	void	*wall;
 	void	*collect;
@@ -80,9 +80,15 @@ void	parse(char *filename, t_map *map_data);
 /* Utils_2 */
 void	aux_check_borders(char **map, int last_row, int last_col);
 void	check_borders(t_map *map_data);
-// int		dfs(t_map *map_data, int x, int y);
-void 	player_position(t_map *map_data, int *player_x, int *player_y);
+void	fill(char **map, t_point *size, t_point *begin, char objective);
+int		flood_fill(char **map, t_point *size, t_point *begin);
 void	check_correct_path(t_map *map_data);
+
+/* Utils_3 */
+char 	**duplicate_map(char **map);
+void	player_position(t_map *map_data, int *player_x, int *player_y);
+int		contar_elementos(char **map, t_point *size, char objetivo1, char objetivo2);
+
 
 /* Utils */
 int		number_lines(int fd);

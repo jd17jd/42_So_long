@@ -6,7 +6,7 @@
 #    By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/09/26 12:19:27 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/10/02 12:33:28 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SOURCES = 	src/main.c \
 			src/init/init.c \
 			src/parser/parse.c \
 			src/parser/utils_2.c \
+			src/parser/utils_3.c \
 			src/parser/utils.c
 
 OBJECTS =	src/main.o \
@@ -31,6 +32,7 @@ OBJECTS =	src/main.o \
 			src/init/init.o \
 			src/parser/parse.o \
 			src/parser/utils_2.o \
+			src/parser/utils_3.o \
 			src/parser/utils.o
 
 # Ruta a la libft
@@ -88,6 +90,10 @@ src/parser/parse.o: src/parser/parse.c
 src/parser/utils_2.o: src/parser/utils_2.c
 	@echo "Compiling utils_2.c"
 	@$(CC) $(CFLAGS) -c src/parser/utils_2.c -o src/parser/utils_2.o
+
+src/parser/utils_3.o: src/parser/utils_3.c
+	@echo "Compiling utils_3.c"
+	@$(CC) $(CFLAGS) -c src/parser/utils_3.c -o src/parser/utils_3.o
 
 src/parser/utils.o: src/parser/utils.c
 	@echo "Compiling utils.c"
