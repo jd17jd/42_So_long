@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:33:56 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/02 13:02:57 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/04 00:16:48 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	check_borders(t_map *map_data)
 	int		last_col;
 
 	map = map_data->map;
-	//ALOJO MEMORIA PARA EL MAPA
-	map_data->area = (t_point *)malloc(sizeof(t_point));
+	//RESERVO PARA AREA
+	map_data->area = (t_point *)ft_calloc(1, sizeof(t_point));
 	last_row = 0;
 	while (map[last_row])
 		last_row++;
-	map_data->area->y = last_row; //METO FILAS MAPA
+	map_data->area->y = last_row;
 	last_col = 0;
 	while (map[0][last_col])
 		last_col++;
-	map_data->area->x = last_col - 1; //METO COLUMNAS MAPA
+	map_data->area->x = last_col - 1;
 	aux_check_borders(map, map_data->area->y - 1, map_data->area->x - 1);
 }
 
@@ -89,19 +89,19 @@ int	flood_fill(char **map, t_point *size, t_point *begin)
 
 void	check_correct_path(t_map *map_data)
 {
-	char	**map;
+	char	**map_aux;
 	int		player_x;
 	int		player_y;
 
 	player_x = 0;
 	player_y = 0;
-	map = duplicate_map(map_data->map); // ALOJO MEMORIA PARA EL MAPA
-	//ALOJO MEMORIA PARA POSICION DEL JUGADOR
-	map_data->p_player = (t_point *)malloc(sizeof(t_point));
+	map_aux = duplicate_map(map_data->map); // RESERVO PARA MAPA AUX
+	//RESERVO PARA POS.JUGADOR
+	map_data->p_player = (t_point *)ft_calloc(1, sizeof(t_point));
 	player_position(map_data, &player_x, &player_y);
 	map_data->p_player->x = player_x;
 	map_data->p_player->y = player_y;
-	if (!(flood_fill(map, map_data->area, map_data->p_player)))
+	if (!(flood_fill(map_aux, map_data->area, map_data->p_player)))
 		ft_error("Error\nThere's no valid path\n", 11);
-	free_array(map);
+	free_array(map_aux); //LIBERO MAPA_AUX
 }

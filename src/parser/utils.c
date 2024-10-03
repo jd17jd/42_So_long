@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/02 12:27:09 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/04 00:08:07 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ char	**file_to_array(t_map *map_data, int fd)
 	i = 0;
 	while (line)
 	{
-		res[i++] = line;
+		res[i] = line;
 		line = get_next_line(fd);
+		i++;
 	}
 	res[i] = NULL;
 	close(fd);

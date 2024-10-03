@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:21:57 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/30 19:10:41 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/04 01:23:02 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,18 @@ int	main(int argc, char **argv)
 	parse(map_name, &map_data); //PARSEO ENTRADA
 	init_image(&map_data); //INICIALIZACION DE GRAFICOS
 	
-	free(map_data.path_name); //LIBERO PATH
+	free(map_data.p_player); //LIBEROO POS.JUGADOR
+	free(map_data.area); //LIBERO AREA
+	
+	free(map_data.empty);
+	free(map_data.wall);
+	free(map_data.collect);
+	free(map_data.exit);
+	free(map_data.player);
+	free(map_data.mlx_win);
+	free(map_data.mlx);
+	
 	free_array(map_data.map); //LIBERO MAP
+	free(map_data.path_name); //LIBERO PATH
 	return (0);
 }
