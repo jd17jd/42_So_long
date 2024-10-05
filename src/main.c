@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:21:57 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 14:41:27 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 21:09:14 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 /* Allocates memory for the objects in the struct */
 void	allocate_mem(t_map *map_data)
 {
-	map_data->p_player = (t_point *)ft_calloc(1, sizeof(t_point));
+	map_data->p_player = (t_point *)ft_calloc(1, sizeof(t_point)); //RESERVO
 	if (!map_data->p_player)
 		ft_error("Error\nMemory allocation failed\n", 1);
-	map_data->p_exit = (t_point *)ft_calloc(1, sizeof(t_point));
+	map_data->p_exit = (t_point *)ft_calloc(1, sizeof(t_point)); //RESERVO
 	if (!map_data->p_exit)
 		ft_error("Error\nMemory allocation failed\n", 1);
-	map_data->area = (t_point *)ft_calloc(1, sizeof(t_point));
-	if (!map_data->p_player)
+	map_data->area = (t_point *)ft_calloc(1, sizeof(t_point)); //RESERVO
+	if (!map_data->area)
 		ft_error("Error\nMemory allocation failed\n", 1);
 }
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 	init_image(&map_data);
 	mlx_key_hook(map_data.mlx, detect_key, &map_data);
 	mlx_loop(map_data.mlx);
+	mlx_terminate(map_data.mlx);
 	free_all(&map_data);
 	return (0);
 }

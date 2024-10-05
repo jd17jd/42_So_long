@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:23:54 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 15:11:42 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 21:09:10 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,10 @@ void	free_array(char **array)
 
 void	free_all(t_map *map_data)
 {
-	free(map_data->p_player); //LIBEROO POS.JUGADOR
-	free(map_data->p_exit); //LIBEROO POS.JUGADOR
-	free(map_data->area); //LIBERO AREA
-	
-	//LIBERO CARGAS IMAGENES
-	free(map_data->empty);
-	free(map_data->wall);
-	free(map_data->collect);
-	free(map_data->exit);
-	free(map_data->player);
-
-	//LIBERO PUNTEROS A LIB
-	free(map_data->mlx_win);
-	free(map_data->mlx);
-	
-	free_array(map_data->map); //LIBERO MAP
 	free(map_data->path_name); //LIBERO PATH
+	free_array(map_data->map); //LIBERO MAP
+	
+	free(map_data->p_player); //LIBERO
+	free(map_data->p_exit); //LIBERO
+	free(map_data->area); //LIBERO
 }

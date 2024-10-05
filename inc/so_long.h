@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 15:07:20 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 20:16:34 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	ft_error(char *str, int code);
 
 /* Free */
 void	free_array(char **array);
+void	free_images(t_map *map_data);
 void	free_all(t_map *map_data);
 
 /* Init */
@@ -81,6 +82,7 @@ void	move_up(t_map *map_data);
 void	move_down(t_map *map_data);
 void	move_right(t_map *map_data);
 void	move_left(t_map *map_data);
+int		end_game(void);
 void	aux_ending_situations(mlx_key_data_t keydata, t_map *map_data);
 void	detect_key(mlx_key_data_t keydata, void *param);
 

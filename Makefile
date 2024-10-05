@@ -6,7 +6,7 @@
 #    By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/10/05 02:05:12 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/10/05 21:12:20 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ MLX42 = $(BUILD_DIR)/libmlx42.a
 
 # Flags de compilacion
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -g3 -fsanitize=address
 RM := rm -f
 RMDIR := rm -rf
 MLX42_INC := -I ./include
