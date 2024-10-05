@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 01:56:39 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/08 22:25:12 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 02:41:21 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,6 @@ int	ft_putstr(const char *str)
 			return (-1);
 		i++;
 	}
-	return (i);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
 	return (i);
 }
 

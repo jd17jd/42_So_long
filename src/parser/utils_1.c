@@ -1,113 +1,92 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/04 00:08:07 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 01:36:17 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/so_long.h"
 
-int	number_lines(int fd)
-{
-	char	*line;
-	int		line_count;
-
-	line = get_next_line(fd);
-	line_count = 0;
-	if (!line)
-		ft_error("Error\nMap is empty4\n", 4);
-	while (line)
-	{
-		line_count++;
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (line_count);
-}
-
-char	**file_to_array(t_map *map_data, int fd)
+/* Checks if the measures of the map is correct */
+void	check_size(t_map *map_data)
 {
 	int		i;
-	char	**res;
-	char	*line;
-	int		lines;
-
-	lines = number_lines(fd);
-	fd = open(map_data->path_name, O_RDONLY);
-	res = ft_calloc((lines + 1), sizeof(char *));
-	if (!res)
-		ft_error("Error\nUnable to allocate memory\n", 5);
-	line = get_next_line(fd);
-	i = 0;
-	while (line)
-	{
-		res[i] = line;
-		line = get_next_line(fd);
-		i++;
-	}
-	res[i] = NULL;
-	close(fd);
-	return (res);
-}
-
-void	check_size(char **map)
-{
-	int		i;
+	char	**map;
 	size_t	col_size;
 
-	col_size = ft_strlen(map[0]);
 	i = 0;
+	map = map_data->map;
+	col_size = ft_strlen(map[0]);
 	while (map[i])
 	{
 		if (ft_strlen(map[i]) != col_size)
 			ft_error("Error\nThe map is not rectangular\n", 7);
 		i++;
 	}
+	map_data->area->y = i;
+	map_data->area->x = (int) col_size - 1;
 }
 
-void	aux_check_number(char **map, int player, int exit, int objects)
+void	update_player_pos(t_map *map_data, int i, int j, int *player)
 {
-	int	i;
-	int	j;
+	map_data->p_player->x = j;
+	map_data->p_player->y = i;
+	(*player)++;
+	printf("Coordenada X: %d\n", map_data->p_player->x);
+	printf("Coordenada Y: %d\n", map_data->p_player->y);
 
+}
+
+void	aux_quan_elts(t_map *map_data, int player, int exit, int collectibles)
+{
+	int		i;
+	int		j;
+	char	**map;
+
+	map = map_data->map;
 	i = 0;
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j] != '\n')
+		while (map[i][j] && map[i][j] != '\n')
 		{
 			if (map[i][j] == 'P')
-				player++;
+				update_player_pos(map_data, i, j, &player);
 			else if (map[i][j] == 'E')
 				exit++;
 			else if (map[i][j] == 'C')
-				objects++;
+				collectibles++;
 			j++;
 		}
 		i++;
 	}
+	map_data->collectibles = collectibles;
+	aux_errors_elts(player, exit, collectibles);
+}
+
+void	aux_errors_elts(int player, int exit, int collectibles)
+{
 	if (player != 1)
 		ft_error("Error\nThere must be exactly one player\n", 8);
 	if (exit != 1)
 		ft_error("Error\nThere must be exactly one exit\n", 8);
-	if (objects == 0)
+	if (collectibles == 0)
 		ft_error("Error\nThere must be at least one collectible\n", 8);
 }
 
-void	check_number_cells(char **map)
+void	check_number_elts(t_map *map_data)
 {
 	int	player;
 	int	exit;
-	int	objects;
+	int	collectibles;
 
 	player = 0;
 	exit = 0;
-	objects = 0;
-	aux_check_number(map, player, exit, objects);
+	collectibles = 0;
+	aux_quan_elts(map_data, player, exit, collectibles);
 }

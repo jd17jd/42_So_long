@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+         #
+#    By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/10/02 12:33:28 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/10/05 02:05:12 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,19 +21,21 @@ SOURCES = 	src/main.c \
 			src/errors/errors.c \
 			src/free/free.c \
 			src/init/init.c \
+			src/keys/keys.c \
 			src/parser/parse.c \
+			src/parser/utils_1.c \
 			src/parser/utils_2.c \
 			src/parser/utils_3.c \
-			src/parser/utils.c
 
 OBJECTS =	src/main.o \
 			src/errors/errors.o \
 			src/free/free.o \
 			src/init/init.o \
+			src/keys/keys.o \
 			src/parser/parse.o \
+			src/parser/utils_1.o \
 			src/parser/utils_2.o \
 			src/parser/utils_3.o \
-			src/parser/utils.o
 
 # Ruta a la libft
 LIBFT_DIR = lib
@@ -83,9 +85,17 @@ src/init/init.o: src/init/init.c
 	@echo "Compiling init.c"
 	@$(CC) $(CFLAGS) -c src/init/init.c -o src/init/init.o
 
+src/keys/keys.o: src/keys/keys.c
+	@echo "Compiling keys.c"
+	@$(CC) $(CFLAGS) -c src/keys/keys.c -o src/keys/keys.o
+
 src/parser/parse.o: src/parser/parse.c
 	@echo "Compiling parse.c"
 	@$(CC) $(CFLAGS) -c src/parser/parse.c -o src/parser/parse.o
+
+src/parser/utils_1.o: src/parser/utils_1.c
+	@echo "Compiling utils_1.c"
+	@$(CC) $(CFLAGS) -c src/parser/utils_1.c -o src/parser/utils_1.o
 	
 src/parser/utils_2.o: src/parser/utils_2.c
 	@echo "Compiling utils_2.c"
@@ -94,10 +104,6 @@ src/parser/utils_2.o: src/parser/utils_2.c
 src/parser/utils_3.o: src/parser/utils_3.c
 	@echo "Compiling utils_3.c"
 	@$(CC) $(CFLAGS) -c src/parser/utils_3.c -o src/parser/utils_3.o
-
-src/parser/utils.o: src/parser/utils.c
-	@echo "Compiling utils.c"
-	@$(CC) $(CFLAGS) -c src/parser/utils.c -o src/parser/utils.o
 
 # Objetivos
 all: $(NAME) $(MLX42) $(LIBFT)

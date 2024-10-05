@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/02 12:32:22 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 02:53:30 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_map
 	void	*collect;
 	void	*exit;
 	void	*player;
+	int		moves;
+	int		collectibles;
 }	t_map;
 
 /* Errors */
@@ -69,32 +71,46 @@ void	ft_error(char *str, int code);
 
 /* Free */
 void	free_array(char **array);
+void	free_all(t_map *map_data);
 
 /* Init */
+void	load_images_1(t_map *map_data);
+void	load_images_2(t_map *map_data);
+void	all_empty(t_map *map_data);
+void	select_image(int col, int row, t_map *map_data);
+void	print_images(t_map *map_data);
 void	init_image(t_map *map_data);
 
+/* Keys */
+void	move_up(t_map *map_data);
+void	move_down(t_map *map_data);
+void	move_right(t_map *map_data);
+void	move_left(t_map *map_data);
+void	aux_ending_situations(mlx_key_data_t keydata, t_map *map_data);
+void	detect_key(mlx_key_data_t keydata, void *param);
+
 /* Parse */
-void	check_conditions_map(t_map *map_data, int fd);
+int		open_file(char *path);
+int		aux_number_lines(int fd);
+char	**aux_file_to_array(t_map *map_data, int fd);
+void	check_conditions_map(t_map *map_data);
 void	parse(char *filename, t_map *map_data);
 
+/* Utils_1 */
+void	check_size(t_map *map_data);
+void	aux_quan_elts(t_map *map_data, int player, int exit, int collectibles);
+void	aux_errors_elts(int player, int exit, int collectibles);
+void	check_number_elts(t_map *map_data);
+
 /* Utils_2 */
-void	aux_check_borders(char **map, int last_row, int last_col);
-void	check_borders(t_map *map_data);
-void	fill(char **map, t_point *size, t_point *begin, char objective);
-int		flood_fill(char **map, t_point *size, t_point *begin);
+void	check_borders(t_map *map_data, int last_row, int last_col);
+void	aux_fill(char **map, t_point *size, t_point *begin, char objective);
+int		aux_flood_fill(char **map, t_point *size, t_point *begin);
 void	check_correct_path(t_map *map_data);
 
 /* Utils_3 */
-char 	**duplicate_map(char **map);
-void	player_position(t_map *map_data, int *player_x, int *player_y);
-int		contar_elementos(char **map, t_point *size, char objetivo1, char objetivo2);
-
-
-/* Utils */
-int		number_lines(int fd);
-char	**file_to_array(t_map *map_data, int fd);
-void    check_size(char **map);
-void	aux_check_number(char **map, int player, int exit, int objects);
-void	check_number_cells(char **map);
+char 	**aux_duplicate_map(char **map);
+void	aux_player_position(t_map *map_data, int *player_x, int *player_y);
+int		aux_number_elts(char **map, t_point *size, char obj1, char pbj2);
 
 #endif
