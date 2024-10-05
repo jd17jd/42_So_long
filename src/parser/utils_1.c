@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 01:36:17 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:42:25 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ void	update_player_pos(t_map *map_data, int i, int j, int *player)
 	map_data->p_player->x = j;
 	map_data->p_player->y = i;
 	(*player)++;
-	printf("Coordenada X: %d\n", map_data->p_player->x);
-	printf("Coordenada Y: %d\n", map_data->p_player->y);
+}
 
+void	update_exit_pos(t_map *map_data, int i, int j, int *exit)
+{
+	map_data->p_exit->x = j;
+	map_data->p_exit->y = i;
+	(*exit)++;
 }
 
 void	aux_quan_elts(t_map *map_data, int player, int exit, int collectibles)
@@ -58,7 +62,7 @@ void	aux_quan_elts(t_map *map_data, int player, int exit, int collectibles)
 			if (map[i][j] == 'P')
 				update_player_pos(map_data, i, j, &player);
 			else if (map[i][j] == 'E')
-				exit++;
+				update_exit_pos(map_data, i, j, &exit);
 			else if (map[i][j] == 'C')
 				collectibles++;
 			j++;

@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:23:54 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/04 21:10:57 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:11:42 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	free_array(char **array)
 void	free_all(t_map *map_data)
 {
 	free(map_data->p_player); //LIBEROO POS.JUGADOR
+	free(map_data->p_exit); //LIBEROO POS.JUGADOR
 	free(map_data->area); //LIBERO AREA
 	
 	//LIBERO CARGAS IMAGENES

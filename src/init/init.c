@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:34:37 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 01:49:48 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:43:22 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,11 @@ void	select_image(int col, int row, t_map *map_data)
 		if (mlx_image_to_window(map_data->mlx, map_data->collect, col * 64, row * 64) < 0)
 			ft_error("Error\nImage couldn't be printed: COLLECT\n", 14);
 	}
-	if (map_data->map[row][col] == 'E')
-	{
-		if (mlx_image_to_window(map_data->mlx, map_data->exit, col * 64, row * 64) < 0)
-			ft_error("Error\nImage couldn't be printed: EXIT\n", 14);
-	}
+	// if (map_data->map[row][col] == 'E')
+	// {
+	// 	if (mlx_image_to_window(map_data->mlx, map_data->exit, col * 64, row * 64) < 0)
+	// 		ft_error("Error\nImage couldn't be printed: EXIT\n", 14);
+	// }
 }
 
 

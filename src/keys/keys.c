@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:57:02 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 02:56:44 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:10:54 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,31 @@ int	end_game(void)
 	return (0);
 }
 
-/* Fills with empties */
 /* When a key is pressed, the player is moved */
-void aux_ending_situations(mlx_key_data_t keydata, t_map *map_data) {
-    char **map;
-    int player_x;
-    int player_y;
+void	aux_ending_situations(mlx_key_data_t keydata, t_map *map_data)
+{
+    int		player_x;
+    int		player_y;
+    int		exit_x;
+    int		exit_y;
 
-    map = map_data->map;
     player_x = map_data->p_player->x;
     player_y = map_data->p_player->y;
+	exit_x = map_data->p_exit->x;
+    exit_y = map_data->p_exit->y;
 
-    if (keydata.key == ESC)
+    // Este bloque es independiente
+    if (keydata.key == MLX_KEY_ESCAPE) {
         end_game();
+    }
 
-    if (map_data->collectibles == 0 && 
-        ((keydata.key == D && map[player_y][player_x + 1] == 'E') ||
-         (keydata.key == S && map[player_y + 1][player_x] == 'E') ||
-         (keydata.key == A && map[player_y][player_x - 1] == 'E') ||
-         (keydata.key == W && map[player_y - 1][player_x] == 'E'))) {
+	if (map_data->collectibles == 0) {
+        if (mlx_image_to_window(map_data->mlx, map_data->exit, exit_x * 64, exit_y * 64) < 0)
+		{
+            ft_error("Error\nImage couldn't be printed: EXIT\n", 14);
+        }
+    }
+    if (map_data->collectibles == 0 && player_x == exit_x && player_y == exit_y) {
         ft_printf("Congrats!! You won!\n");
         end_game();
     }
@@ -121,24 +127,32 @@ void aux_ending_situations(mlx_key_data_t keydata, t_map *map_data) {
 // Detectar la tecla presionada
 void detect_key(mlx_key_data_t keydata, void *param)
 {
-	printf("Hola\n");
     t_map *map_data = (t_map *)param;
+    if (keydata.action != MLX_PRESS)
+        return;
+
+    if (keydata.key == MLX_KEY_W
+    && map_data->map[map_data->p_player->y - 1][map_data->p_player->x] != '1') {
+        move_up(map_data);
+    }
+
+    if (keydata.key == MLX_KEY_S
+    && map_data->map[map_data->p_player->y + 1][map_data->p_player->x] != '1') {
+        move_down(map_data);
+    }
+
+    if (keydata.key == MLX_KEY_D
+    && map_data->map[map_data->p_player->y][map_data->p_player->x + 1] != '1') {
+        move_right(map_data);
+    }
+
+    if (keydata.key == MLX_KEY_A
+    && map_data->map[map_data->p_player->y][map_data->p_player->x - 1] != '1') {
+        move_left(map_data);
+    }
 
     aux_ending_situations(keydata, map_data);
-
-    if (keydata.key == W && map_data->map[map_data->p_player->y - 1][map_data->p_player->x] != '1'
-	&& map_data->map[map_data->p_player->y - 1][map_data->p_player->x] != 'E')
-        move_up(map_data);
-
-    if (keydata.key == S && map_data->map[map_data->p_player->y + 1][map_data->p_player->x] != '1'
-	&& map_data->map[map_data->p_player->y + 1][map_data->p_player->x] != 'E')
-        move_down(map_data);
-
-    if (keydata.key == D && map_data->map[map_data->p_player->y][map_data->p_player->x + 1] != '1'
-	&& map_data->map[map_data->p_player->y][map_data->p_player->x + 1] != 'E')
-        move_right(map_data);
-
-    if (keydata.key == A && map_data->map[map_data->p_player->y][map_data->p_player->x - 1] != '1'
-	&& map_data->map[map_data->p_player->y][map_data->p_player->x - 1] != 'E')
-        move_left(map_data);
 }
+
+
+

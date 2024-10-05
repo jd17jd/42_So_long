@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 02:53:30 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/05 15:07:20 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@
 # include "../lib/src/gnl/get_next_line_bonus.h"
 # include "../lib/src/gnl/get_next_line.h"
 # include "../MLX42/include/MLX42/MLX42.h"
-
-# define ESC 53
-# define A 0
-# define S 1
-# define D 2
-# define W 13
 
 # define EMPTY "resources/sprites/Mandatory/0-Empty/empty.png"
 # define WALL "resources/sprites/Mandatory/1-Walls/wall.png"
@@ -54,8 +48,9 @@ typedef struct s_map
 	void	*mlx_win; /* Pointer to the window where the game is renderized */
 	char	*path_name; /* Ya inicializado */
 	char	**map; /* Ya inicializado */
-	t_point	*p_player; /* Ya inicializado (NO liberado)*/
-	t_point	*area; /* Ya inicializado (NO liberado)*/
+	t_point	*p_player; /* Ya inicializado */
+	t_point	*p_exit; /* Ya inicializado */
+	t_point	*area; /* Ya inicializado */
 	void	*empty;
 	void	*wall;
 	void	*collect;
