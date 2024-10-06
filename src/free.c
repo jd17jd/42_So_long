@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 21:23:54 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/05 21:09:10 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/06 20:26:56 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/so_long.h"
+#include "../inc/so_long.h"
 
 void	free_array(char **array)
 {
@@ -25,12 +25,12 @@ void	free_array(char **array)
 	free(array);
 }
 
+/* Frees map_data objects */
 void	free_all(t_map *map_data)
 {
-	free(map_data->path_name); //LIBERO PATH
-	free_array(map_data->map); //LIBERO MAP
-	
-	free(map_data->p_player); //LIBERO
-	free(map_data->p_exit); //LIBERO
-	free(map_data->area); //LIBERO
+	free(map_data->path_name);
+	free_array(map_data->map);
+	free(map_data->p_player);
+	free(map_data->p_exit);
+	free(map_data->area);
 }
