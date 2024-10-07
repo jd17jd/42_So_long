@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:21:57 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/06 20:08:57 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:47:44 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	parse(char *filename, t_map *map_data)
 	complete_path = ft_strjoin(PATH_LEVELS, filename);
 	map_data->path_name = complete_path;
 	fd = open_file(complete_path);
-	map = aux_file_to_array(fd);
+	map = aux_file_to_array(complete_path, fd);
 	map_data->map = map;
 	check_conditions_map(map_data);
 	close(fd);

@@ -6,11 +6,11 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 15:34:37 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/06 20:24:18 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:56:14 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../../inc/so_long.h"
 
 /* Converts the textures to images and stores it in the data structures */
 void	load_images_1(t_map *map_data)

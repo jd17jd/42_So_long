@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/06 19:56:59 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:53:33 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_map
 void	ft_error(char *str, int code);
 
 /* Free */
-void	free_array(char **array);
 void	free_all(t_map *map_data);
 
 /* Init */
@@ -88,19 +87,19 @@ void	aux_ending_situations(mlx_key_data_t keydata, t_map *map_data);
 /* Parse */
 int		open_file(char *path);
 int		aux_number_lines(int fd);
-char	**aux_file_to_array(int fd);
-void	check_size(t_map *map_data);
+char	**ft_read_lines(int fd, int lines);
+char	**aux_file_to_array(char *complete_path, int fd);
 void	check_conditions_map(t_map *map_data);
 
 /* Utils_1 */
+void	check_size(t_map *map_data);
 void	update_player_pos(t_map *map_data, int i, int j, int *player);
 void	update_exit_pos(t_map *map_data, int i, int j, int *exit);
 void	aux_quan_elts(t_map *map_data, int *player, int *exit, int *collect);
 void	check_number_elts(t_map *map_data);
-void	check_borders(t_map *map_data, int last_row, int last_col);
 
 /* Utils_2 */
-char	**aux_duplicate_map(char **map);
+void	check_borders(t_map *map_data, int last_row, int last_col);
 void	aux_fill(char **map, t_point *size, t_point *begin, char objective);
 int		aux_number_elts(char **map, t_point *size, char obj1, char obj2);
 int		aux_flood_fill(char **map, t_point *size, t_point *begin);

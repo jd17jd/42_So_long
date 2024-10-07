@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   ft_dup_matrix.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 19:06:50 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/07 20:06:34 by jvivas-g         ###   ########.fr       */
+/*   Created: 2024/10/07 18:55:25 by jvivas-g          #+#    #+#             */
+/*   Updated: 2024/10/07 19:50:20 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "../../inc/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
+/* Duplicates a char** object */
+char	**ft_dup_matrix(char **matrix)
+{
+	char	**res;
+	int		i;
 
-# include "../../inc/libft.h"
-
-/* BUFFER_SIZE = Bytes to read/write in each iteration of get_next_line() */
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
-
-char	*ft_get_line(char *str);
-char	*ft_append(int fd, char *stash);
-char	*get_next_line(int fd);
-
-#endif
+	i = 0;
+	while (matrix[i])
+		i++;
+	res = (char **)ft_calloc(i + 1, sizeof(char *));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (matrix[i])
+	{
+		res[i] = ft_strdup(matrix[i]);
+		i++;
+	}
+	return (res);
+}

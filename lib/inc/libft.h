@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:23:01 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/09/13 16:03:03 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:31:50 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdarg.h>
-
-// # include "../src/gnl/get_next_line_bonus.h"
+# include <fcntl.h>
+# include <stdio.h>
 
 typedef struct s_list
 {
@@ -51,6 +51,10 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+void	ft_error(char *str, int code);
+void	ft_perror(char *str, int code);
+char	**ft_dup_matrix(char **matrix);
+void	ft_free_matrix(char **matrix);
 
 /* PARTE 2 */
 

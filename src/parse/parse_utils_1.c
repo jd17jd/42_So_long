@@ -6,11 +6,31 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/06 20:16:38 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:52:22 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../../inc/so_long.h"
+
+/* Checks if the measures of the map are correct */
+void	check_size(t_map *map_data)
+{
+	int		i;
+	char	**map;
+	size_t	col_size;
+
+	i = 0;
+	map = map_data->map;
+	col_size = ft_strlen(map[0]);
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) != col_size)
+			ft_error("Error\nThe map is not rectangular\n", 7);
+		i++;
+	}
+	map_data->area->y = i;
+	map_data->area->x = (int) col_size - 1;
+}
 
 /* Increments the amount of players and save its coordenates */
 void	update_player_pos(t_map *map_data, int i, int j, int *player)
@@ -72,27 +92,4 @@ void	check_number_elts(t_map *map_data)
 		ft_error("Error\nThere must be exactly one exit\n", 8);
 	if (collectibles == 0)
 		ft_error("Error\nThere must be at least one collectible\n", 8);
-}
-
-/* Checks if the borders are all covered by 1 */
-void	check_borders(t_map *map_data, int last_row, int last_col)
-{
-	int		i;
-	char	**map;
-
-	map = map_data->map;
-	i = 0;
-	while (i <= last_col)
-	{
-		if (map[0][i] != '1' || map[last_row][i] != '1')
-			ft_error("Error\nNot enough walls on the top or bottom\n", 9);
-		i++;
-	}
-	i = 0;
-	while (i <= last_row)
-	{
-		if (map[i][0] != '1' || map[i][last_col] != '1')
-			ft_error("Error\nNot enough walls on the sides\n", 9);
-		i++;
-	}
 }

@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   ft_perror.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 19:06:50 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/07 20:06:34 by jvivas-g         ###   ########.fr       */
+/*   Created: 2024/10/07 18:31:54 by jvivas-g          #+#    #+#             */
+/*   Updated: 2024/10/07 18:42:25 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "../../inc/libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-
-# include "../../inc/libft.h"
-
-/* BUFFER_SIZE = Bytes to read/write in each iteration of get_next_line() */
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
-
-char	*ft_get_line(char *str);
-char	*ft_append(int fd, char *stash);
-char	*get_next_line(int fd);
-
-#endif
+/**
+ * Shows a system error message (from perror) followed by an exit code
+ * @param str String with a custom message to prefix the system error
+ * @param code Exit code
+ */
+void	ft_perror(char *str, int code)
+{
+	perror(str);
+	exit(code);
+}

@@ -6,11 +6,11 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 18:31:02 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/06 20:40:59 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:56:23 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../../inc/so_long.h"
 
 int	end_game(void)
 {

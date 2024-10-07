@@ -6,11 +6,11 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:57:02 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/06 20:24:47 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:56:29 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/so_long.h"
+#include "../../inc/so_long.h"
 
 void	move_up(t_map *map_data)
 {

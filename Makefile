@@ -6,7 +6,7 @@
 #    By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/10/06 20:05:53 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/10/07 20:03:06 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,24 +18,22 @@ COLOR_VERDE = "\033[32m"
 
 # Lista de archivos fuente y objetos
 SOURCES = 	src/main.c \
-			src/errors.c \
-			src/free.c \
-			src/init.c \
-			src/keys.c \
-			src/keys_utils.c \
-			src/parse.c \
-			src/parse_utils_1.c \
-			src/parse_utils_2.c \
+			src/frees/free.c \
+			src/init/init.c \
+			src/keys/keys.c \
+			src/keys/keys_utils.c \
+			src/parse/parse.c \
+			src/parse/parse_utils_1.c \
+			src/parse/parse_utils_2.c
 
 OBJECTS =	src/main.o \
-			src/errors.o \
-			src/free.o \
-			src/init.o \
-			src/keys.o \
-			src/keys_utils.o \
-			src/parse.o \
-			src/parse_utils_1.o \
-			src/parse_utils_2.o \
+			src/frees/free.o \
+			src/init/init.o \
+			src/keys/keys.o \
+			src/keys/keys_utils.o \
+			src/parse/parse.o \
+			src/parse/parse_utils_1.o \
+			src/parse/parse_utils_2.o
 
 # Ruta a la libft
 LIBFT_DIR = lib
@@ -72,38 +70,34 @@ $(LIBFT):
 src/main.o: src/main.c
 	@echo "Compiling main.c"
 	@$(CC) $(CFLAGS) -c src/main.c -o src/main.o
-	
-src/errors.o: src/errors.c
-	@echo "Compiling errors.c"
-	@$(CC) $(CFLAGS) -c src/errors.c -o src/errors.o
 
-src/free.o: src/free.c
+src/frees/free.o: src/frees/free.c
 	@echo "Compiling free.c"
-	@$(CC) $(CFLAGS) -c src/free.c -o src/free.o
+	@$(CC) $(CFLAGS) -c src/frees/free.c -o src/frees/free.o
 
-src/init.o: src/init.c
+src/init/init.o: src/init/init.c
 	@echo "Compiling init.c"
-	@$(CC) $(CFLAGS) -c src/init.c -o src/init.o
+	@$(CC) $(CFLAGS) -c src/init/init.c -o src/init/init.o
 
-src/keys.o: src/keys.c
+src/keys/keys.o: src/keys/keys.c
 	@echo "Compiling keys.c"
-	@$(CC) $(CFLAGS) -c src/keys.c -o src/keys.o
+	@$(CC) $(CFLAGS) -c src/keys/keys.c -o src/keys/keys.o
 
-src/keys_utils.o: src/keys_utils.c
+src/keys/keys_utils.o: src/keys/keys_utils.c
 	@echo "Compiling keys_utils.c"
-	@$(CC) $(CFLAGS) -c src/keys_utils.c -o src/keys_utils.o
+	@$(CC) $(CFLAGS) -c src/keys/keys_utils.c -o src/keys/keys_utils.o
 
-src/parse.o: src/parse.c
+src/parse/parse.o: src/parse/parse.c
 	@echo "Compiling parse.c"
-	@$(CC) $(CFLAGS) -c src/parse.c -o src/parse.o
+	@$(CC) $(CFLAGS) -c src/parse/parse.c -o src/parse/parse.o
 
-src/parse_utils_1.o: src/parse_utils_1.c
+src/parse/parse_utils_1.o: src/parse/parse_utils_1.c
 	@echo "Compiling parse_utils_1.c"
-	@$(CC) $(CFLAGS) -c src/parse_utils_1.c -o src/parse_utils_1.o
+	@$(CC) $(CFLAGS) -c src/parse/parse_utils_1.c -o src/parse/parse_utils_1.o
 	
-src/parse_utils_2.o: src/parse_utils_2.c
+src/parse/parse_utils_2.o: src/parse/parse_utils_2.c
 	@echo "Compiling parse_utils_2.c"
-	@$(CC) $(CFLAGS) -c src/parse_utils_2.c -o src/parse_utils_2.o
+	@$(CC) $(CFLAGS) -c src/parse/parse_utils_2.c -o src/parse/parse_utils_2.o
 
 # Objetivos
 all: $(NAME) $(MLX42) $(LIBFT)
