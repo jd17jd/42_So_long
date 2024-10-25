@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/18 02:11:24 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:27:51 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct	s_point
 	int y;
 } t_point;
 
+typedef struct	collect
+{
+	mlx_image_t	*image;
+	t_point 	*position;
+} collect_info;
+
 
 /* Structure for the state of the map */
 typedef struct s_map
@@ -53,7 +59,7 @@ typedef struct s_map
 	t_point	*area; /* Ya inicializado */
 	mlx_image_t 	*empty;
 	mlx_image_t 	*wall;
-	mlx_image_t 	**collect;
+	collect_info	*collect;
 	mlx_image_t 	*exit;
 	mlx_image_t 	*player;
 	int		moves;
@@ -96,6 +102,8 @@ void	check_conditions_map(t_map *map_data);
 void	check_size(t_map *map_data);
 void	update_player_pos(t_map *map_data, int i, int j, int *player);
 void	update_exit_pos(t_map *map_data, int i, int j, int *exit);
+void	update_collectibles_pos(t_map *map_data, int i, int j, int collectible);
+void	aux_collects_pos(t_map *map_data);
 void	aux_quan_elts(t_map *map_data, int *player, int *exit, int *collect);
 void	check_number_elts(t_map *map_data);
 

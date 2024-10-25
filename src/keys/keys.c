@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:57:02 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/18 02:46:32 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:04:39 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,28 @@ void	move_up(t_map *map_data)
 	map = map_data->map;
 	player_x = map_data->p_player->x;
 	player_y = map_data->p_player->y;
-if (map[player_y - 1][player_x] == 'C')
-{
-    map_data->collectibles--;
-    i = 0;
-    while (i < map_data->total_collectibles)
-    {
-        printf("Player pos: (%d, %d)\n", player_x * 64, (player_y - 1) * 64);
-        printf("Collectible pos: (%d, %d)\n", map_data->collect[i]->instances->x, map_data->collect[i]->instances->y);
-        if (map_data->collect[i]->instances->x == player_x * 64 && map_data->collect[i]->instances->y == (player_y - 1) * 64)
-        {
-            map_data->collect[i]->enabled = false;  // Desactiva el coleccionable
-            break;
-        }
-        i++;
-    }
-}
+	if (map[player_y - 1][player_x] == 'C')
+	{
+		map_data->collectibles--;
+		i = 0;
+		while (i < map_data->total_collectibles)
+		{
+			if (map_data->collect[i].position->x == player_x &&
+			    map_data->collect[i].position->y == (player_y - 1))
+			{
+				map_data->collect[i].image->enabled = false;  // Desactiva el coleccionable
+				break;
+			}
+			i++;
+		}
 
+	}
+	// modificacion mapa
 	map[player_y][player_x] = '0';
-	map[player_y - 1][player_x] = 'P'; // map_data->collect->instances[0].enabled = false;
+	map[player_y - 1][player_x] = 'P';
+	// modificacion position
 	map_data->p_player->y = player_y - 1;
+	// modificacion impresion
 	map_data->player->instances->y -= 64;
 	map_data->moves++;
 	ft_printf("Movimientos: %d\n", map_data->moves);
@@ -59,21 +61,25 @@ void	move_down(t_map *map_data)
 	player_y = map_data->p_player->y;
 	if (map[player_y + 1][player_x] == 'C')
 	{
-        map_data->collectibles--;
+		map_data->collectibles--;
 		i = 0;
 		while (i < map_data->total_collectibles)
 		{
-			if (map_data->collect[i]->instances->x == player_x * 64 && map_data->collect[i]->instances->y == (player_y + 1) * 64)
+			if (map_data->collect[i].position->x == player_x &&
+			    map_data->collect[i].position->y == (player_y + 1))
 			{
-				map_data->collect[i]->enabled = false;  // Desactiva el coleccionable
+				map_data->collect[i].image->enabled = false;  // Desactiva el coleccionable
 				break;
 			}
 			i++;
 		}
     }
+	// modificacion mapa
 	map[player_y][player_x] = '0';
-	map[player_y + 1][player_x] = 'P'; // map_data->collect->instances[0].enabled = false;
+	map[player_y + 1][player_x] = 'P';
+	// modificacion position
 	map_data->p_player->y = player_y + 1;
+	// modificacion impresion
 	map_data->player->instances->y += 64;
 	map_data->moves++;
 	ft_printf("Movimientos: %d\n", map_data->moves);
@@ -95,17 +101,21 @@ void	move_right(t_map *map_data)
 		i = 0;
 		while (i < map_data->total_collectibles)
 		{
-			if (map_data->collect[i]->instances->x == (player_x + 1) * 64 && map_data->collect[i]->instances->y == player_y * 64)
+			if (map_data->collect[i].position->x == (player_x + 1) &&
+			    map_data->collect[i].position->y == player_y)
 			{
-				map_data->collect[i]->enabled = false;  // Desactiva el coleccionable
+				map_data->collect[i].image->enabled = false;  // Desactiva el coleccionable
 				break;
 			}
 			i++;
 		}
     }
+	// modificacion mapa
 	map[player_y][player_x] = '0';
-	map[player_y][player_x + 1] = 'P'; // map_data->collect->instances[0].enabled = false;
+	map[player_y][player_x + 1] = 'P';
+	// modificacion position
 	map_data->p_player->x = player_x + 1;
+	// modificacion impresion
 	map_data->player->instances->x += 64;
 	map_data->moves++;
 	ft_printf("Movimientos: %d\n", map_data->moves);
@@ -123,21 +133,25 @@ void	move_left(t_map *map_data)
 	player_y = map_data->p_player->y;
 	if (map[player_y][player_x - 1] == 'C')
 	{
-        map_data->collectibles--;
+		map_data->collectibles--;
 		i = 0;
 		while (i < map_data->total_collectibles)
 		{
-			if (map_data->collect[i]->instances->x == (player_x - 1) * 64 && map_data->collect[i]->instances->y == player_y * 64)
+			if (map_data->collect[i].position->x == (player_x - 1) &&
+			    map_data->collect[i].position->y == player_y)
 			{
-				map_data->collect[i]->enabled = false;  // Desactiva el coleccionable
+				map_data->collect[i].image->enabled = false;  // Desactiva el coleccionable
 				break;
 			}
 			i++;
 		}
     }
+	// modificacion mapa
 	map[player_y][player_x] = '0';
-	map[player_y][player_x - 1] = 'P'; // map_data->collect->instances[0].enabled = false;
+	map[player_y][player_x - 1] = 'P';
+	// modificacion position
 	map_data->p_player->x = player_x - 1;
+	// modificacion impresion
 	map_data->player->instances->x -= 64;
 	map_data->moves++;
 	ft_printf("Movimientos: %d\n", map_data->moves);

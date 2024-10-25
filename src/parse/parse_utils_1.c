@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/18 02:20:41 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/25 18:28:13 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,47 @@ void	update_exit_pos(t_map *map_data, int i, int j, int *exit)
 	(*exit)++;
 }
 
+void	update_collectibles_pos(t_map *map_data, int i, int j, int collectible)
+{
+	map_data->collect[collectible].position = ft_calloc(1, sizeof(t_point));
+	if (!map_data->collect[collectible].position)
+			ft_error("Error\nMemory allocation failed\n", 1);
+	// Almacena la posición del coleccionable
+	map_data->collect[collectible].position->x = j;
+	map_data->collect[collectible].position->y = i;
+}
+
+/* Increments the amount of collectibles and saves its coordinates */
+void	aux_collects_pos(t_map *map_data)
+{
+	int		i;
+	int		j;
+	int		collectible;
+	char	**map;
+	
+	map_data->collect = ft_calloc(map_data->collectibles, sizeof(collect_info));
+	if (!map_data->collect)
+		ft_error("Error\nMemory allocation failed\n", 1);
+
+	map = map_data->map;
+	i = 0;
+	collectible = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] && map[i][j] != '\n')
+		{
+			if (map[i][j] == 'C')
+			{
+				update_collectibles_pos(map_data, i, j, collectible);
+				collectible++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 /* Goes through all the map looking for the elements */
 void	aux_quan_elts(t_map *map_data, int *player, int *exit, int *collect)
 {
@@ -74,6 +115,7 @@ void	aux_quan_elts(t_map *map_data, int *player, int *exit, int *collect)
 	}
 	map_data->collectibles = *collect;
 	map_data->total_collectibles = *collect;
+	aux_collects_pos(map_data);
 }
 
 /* Checks the number of elements in the map */
