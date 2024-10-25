@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 00:33:48 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/07 20:53:33 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/18 02:11:24 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ typedef struct s_map
 	t_point	*p_player; /* Ya inicializado */
 	t_point	*p_exit; /* Ya inicializado */
 	t_point	*area; /* Ya inicializado */
-	void	*empty;
-	void	*wall;
-	void	*collect;
-	void	*exit;
-	void	*player;
+	mlx_image_t 	*empty;
+	mlx_image_t 	*wall;
+	mlx_image_t 	**collect;
+	mlx_image_t 	*exit;
+	mlx_image_t 	*player;
 	int		moves;
 	int		collectibles;
+	int 	total_collectibles;
 }	t_map;
 
 /* Errors */

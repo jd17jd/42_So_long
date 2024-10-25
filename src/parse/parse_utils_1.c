@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/07 20:52:22 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/18 02:20:41 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	aux_quan_elts(t_map *map_data, int *player, int *exit, int *collect)
 		i++;
 	}
 	map_data->collectibles = *collect;
+	map_data->total_collectibles = *collect;
 }
 
 /* Checks the number of elements in the map */

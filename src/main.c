@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:21:57 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/07 20:47:44 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/14 22:57:00 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,6 @@ int	main(int argc, char **argv)
 	mlx_loop(map_data.mlx);
 	mlx_terminate(map_data.mlx);
 	free_all(&map_data);
+	
 	return (0);
 }
