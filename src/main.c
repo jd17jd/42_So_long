@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:21:57 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/25 17:15:17 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:58:33 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	init_image(t_map *map_data)
 	int	width;
 	int	height;
 
-	width = map_data->area->x * 64;
-	height = map_data->area->y * 64;
+	width = map_data->area->x * SIZE;
+	height = map_data->area->y * SIZE;
 	map_data->mlx = mlx_init(width, height, "PAC-MAN", true);
 	if (!map_data->mlx)
 		ft_error("Error\nImpossible to initiate the lib\n", 12);
@@ -90,6 +90,5 @@ int	main(int argc, char **argv)
 	mlx_loop(map_data.mlx);
 	mlx_terminate(map_data.mlx);
 	free_all(&map_data);
-	
 	return (0);
 }

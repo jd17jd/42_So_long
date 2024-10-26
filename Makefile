@@ -6,7 +6,7 @@
 #    By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 23:17:14 by jvivas-g          #+#    #+#              #
-#    Updated: 2024/10/07 20:03:06 by jvivas-g         ###   ########.fr        #
+#    Updated: 2024/10/26 16:54:18 by jvivas-g         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,20 +20,24 @@ COLOR_VERDE = "\033[32m"
 SOURCES = 	src/main.c \
 			src/frees/free.c \
 			src/init/init.c \
+			src/init/init_utils.c \
 			src/keys/keys.c \
 			src/keys/keys_utils.c \
 			src/parse/parse.c \
 			src/parse/parse_utils_1.c \
-			src/parse/parse_utils_2.c
+			src/parse/parse_utils_2.c \
+			src/parse/parse_utils_3.c
 
 OBJECTS =	src/main.o \
 			src/frees/free.o \
 			src/init/init.o \
+			src/init/init_utils.o \
 			src/keys/keys.o \
 			src/keys/keys_utils.o \
 			src/parse/parse.o \
 			src/parse/parse_utils_1.o \
-			src/parse/parse_utils_2.o
+			src/parse/parse_utils_2.o \
+			src/parse/parse_utils_3.o
 
 # Ruta a la libft
 LIBFT_DIR = lib
@@ -79,6 +83,10 @@ src/init/init.o: src/init/init.c
 	@echo "Compiling init.c"
 	@$(CC) $(CFLAGS) -c src/init/init.c -o src/init/init.o
 
+src/init/init_utils.o: src/init/init_utils.c
+	@echo "Compiling init_utils.c"
+	@$(CC) $(CFLAGS) -c src/init/init_utils.c -o src/init/init_utils.o
+
 src/keys/keys.o: src/keys/keys.c
 	@echo "Compiling keys.c"
 	@$(CC) $(CFLAGS) -c src/keys/keys.c -o src/keys/keys.o
@@ -98,6 +106,10 @@ src/parse/parse_utils_1.o: src/parse/parse_utils_1.c
 src/parse/parse_utils_2.o: src/parse/parse_utils_2.c
 	@echo "Compiling parse_utils_2.c"
 	@$(CC) $(CFLAGS) -c src/parse/parse_utils_2.c -o src/parse/parse_utils_2.o
+
+src/parse/parse_utils_3.o: src/parse/parse_utils_3.c
+	@echo "Compiling parse_utils_3.c"
+	@$(CC) $(CFLAGS) -c src/parse/parse_utils_3.c -o src/parse/parse_utils_3.o
 
 # Objetivos
 all: $(NAME) $(MLX42) $(LIBFT)
