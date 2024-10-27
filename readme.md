@@ -53,4 +53,5 @@
 Pasos:
 1. Checkeo de argumentos. Hecho
 2. Parseo mapa. Hecho
-3. Inicialización mapa. Siguiente
+3. Inicialización mapa. Hecho
+4. Deteccion de teclas. Hecho

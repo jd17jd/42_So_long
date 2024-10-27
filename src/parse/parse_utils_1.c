@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/26 16:43:12 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/27 17:32:55 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ void	aux_quan_elts(t_map *map_data, int *player, int *exit, int *collect)
 {
 	int		i;
 	int		j;
-	char	**map;
 
-	map = map_data->map;
 	i = 0;
-	while (map[i])
+	while (map_data->map[i])
 	{
 		j = 0;
-		while (map[i][j] && map[i][j] != '\n')
+		while (map_data->map[i][j] && map_data->map[i][j] != '\n')
 		{
-			if (map[i][j] == 'P')
+			if (map_data->map[i][j] == 'P')
 				update_player_pos(map_data, i, j, player);
-			else if (map[i][j] == 'E')
+			else if (map_data->map[i][j] == 'E')
 				update_exit_pos(map_data, i, j, exit);
-			else if (map[i][j] == 'C')
+			else if (map_data->map[i][j] == 'C')
 				(*collect)++;
+			else if (map_data->map[i][j] != '1' && map_data->map[i][j] != '0')
+				ft_error("Error\nInvalid character\n", 8);
 			j++;
 		}
 		i++;
