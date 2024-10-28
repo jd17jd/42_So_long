@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:38:04 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/26 16:44:19 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:03:54 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	check_correct_path(t_map *map_data)
 
 	map_aux = ft_dup_matrix(map_data->map);
 	if (!map_aux)
-		ft_error("Error\nMemory allocation failed\n", 10);
+		ft_error("Error\nMemory allocation failed\n", 1);
 	if (!(aux_flood_fill(map_aux, map_data->area, map_data->p_player)))
-		ft_error("Error\nThere's no valid path\n", 11);
+		ft_error("Error\nThere's no valid path\n", 10);
 	ft_free_matrix(map_aux);
 }

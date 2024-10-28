@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 18:51:29 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/27 17:32:55 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/28 17:59:10 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_size(t_map *map_data)
 	while (map[i])
 	{
 		if (ft_strlen(map[i]) != col_size)
-			ft_error("Error\nThe map is not rectangular\n", 7);
+			ft_error("Error\nThe map is not rectangular\n", 6);
 		i++;
 	}
 	map_data->area->y = i;
@@ -51,7 +51,7 @@ void	aux_quan_elts(t_map *map_data, int *player, int *exit, int *collect)
 			else if (map_data->map[i][j] == 'C')
 				(*collect)++;
 			else if (map_data->map[i][j] != '1' && map_data->map[i][j] != '0')
-				ft_error("Error\nInvalid character\n", 8);
+				ft_error("Error\nInvalid character\n", 7);
 			j++;
 		}
 		i++;

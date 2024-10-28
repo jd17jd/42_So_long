@@ -6,7 +6,7 @@
 /*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 04:06:49 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/07 20:52:46 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:00:42 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**ft_read_lines(int fd, int lines)
 
 	res = ft_calloc((lines + 1), sizeof(char *));
 	if (!res)
-		ft_error("Error\nMemory allocation failed\n", 5);
+		ft_error("Error\nMemory allocation failed\n", 1);
 	i = 0;
 	line = get_next_line(fd);
 	while (line)

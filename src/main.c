@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jvivas-g <jvivas-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jvivas-g <jvivas-g@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 23:21:57 by jvivas-g          #+#    #+#             */
-/*   Updated: 2024/10/27 17:39:45 by jvivas-g         ###   ########.fr       */
+/*   Updated: 2024/10/28 18:05:35 by jvivas-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	init_image(t_map *map_data)
 	height = map_data->area->y * SIZE;
 	map_data->mlx = mlx_init(width, height, "PAC-MAN", true);
 	if (!map_data->mlx)
-		ft_error("Error\nImpossible to initiate the lib\n", 12);
+		ft_error("Error\nImpossible to initiate the lib\n", 11);
 	map_data->mlx_win = mlx_new_image(map_data->mlx, width, height);
 	if (!map_data->mlx_win)
-		ft_error("Error\nImpossible to initiate the window\n", 13);
+		ft_error("Error\nImpossible to initiate the window\n", 12);
 	load_images_1(map_data);
 	load_images_2(map_data);
 	print_images(map_data);

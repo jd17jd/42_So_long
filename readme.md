@@ -1,24 +1,24 @@
 # EXPLICACION DEL PROYECTO 
 ## Juego
-- El objetivo del jugador es recolectar todos los objetos presentes en el mapa y salir eligiendo la ruta más corta posible.
-- Las teclas W, A, S y D se utilizarán para mover al personaje principal.
-- El jugador debe poder moverse en 4 direcciones: subir, bajar, ir a la izquierda o ir a la derecha.
-- El jugador no puede entrar dentro de las paredes.
-- Tras cada movimiento, el número real de movimientosdebe mostrarse en un terminal.
-- Utilizarás una perspectiva 2D (vista de pájaro o lateral).
-- El juego no necesita ser en tiempo real.
-- Aunque los ejemplos dados se refieren a una temática de delfín, puedes crear el mundo que quieras.
+- Objetivo: El jugador debe recolectar todos los objetos presentes en el mapa y salir situandose en el portal de salida
+- Teclas a utilizar:
+    - W = Arriba
+    - S = Abajo
+    - A = Izquierda
+    - D = Derecha
+- El jugador no podrá atravesar paredes
+- Se debe poder visualizar la cantidad de movimientos realizados por salida estándar
+- El juego tendrá una perspectiva 2D
+
 
 ## Gestión de gráficos
 - El programa mostrará la imagen en una ventana.
 - La gestión de tu ventana debe ser limpia (cambiar de ventana, minimizar, etc)
 - Pulsar la tecla ESC debe cerrar la ventana y cerrar el programa limpiamente.
 - Hacer clic en la cruz roja de la ventana debe cerrar la ventana y terminar el programa limpiamente.
-- El uso de images de la miniLibX es obligatorio
 
 ## Mapa
-- El mapa estará construido de 3 componentes: paredes, objetos y espacio abierto.
-- El mapa estará compuesto de solo 5 caracteres:
+- El mapa en el fichero de texto plano estará compuesto de 5 caracteres:
     - 0 para un espacio vacío
     - 1 para u muro
     - C para un coleccionable
@@ -27,31 +27,64 @@
 
 - Este es un ejemplo simple de un mapa válido:
 
-1111111111111
-10010000000C1
-1000011111001
-1P0011E000001
-1111111111111
+1111111111111  
+10010000000C1  
+1000011111001  
+1P0011E000001  
+1111111111111  
 
-- El mapa debe tener una salida, al menos un objeto y una posición inicial.
-- Si el mapa contiene caractéres duplicados (salida o posición inicial), deberás mostrar un mensaje de error.
+
+### Restricciones: 
+- Debe haber solo 1 jugador, 1 salida y por lo menos un coleccionable
 - El mapa debe ser rectangular.
-- El mapa deberá estar cerrado/rodeado de muros, en caso contrario el programa deberá devolver un error.
-- Tienes que comprobar si hay un camino válido en el mapa.
+- El mapa deberá estar cerrado/rodeado de muros.
+- Deberá haber un camino válido en el mapa (Posible reocger todos los objetos y llegar a la salida)
 - Debes poder procesar cualquier tipo de mapa, siempre y cuando respete las anteriores normas.
-- Otro ejemplo minimalista de un mapa .ber:
+- El mapa deberá tener extensión .ber
 
-1111111111111111111111111111111111
-1E0000000000000C00000C000000000001
-1010010100100000101001000000010101
-1010010010101010001001000000010101
-1P0000000C00C0000000000000000000C1
-1111111111111111111111111111111111
 
 - En caso de fallos de configuración de cualquier tipo encontrados en el archivo, el programa debe terminar correctamente y devolver “Error\n” seguido de un mensaje explícito de tu elección.
 
-Pasos:
-1. Checkeo de argumentos. Hecho
-2. Parseo mapa. Hecho
-3. Inicialización mapa. Hecho
-4. Deteccion de teclas. Hecho
+
+## Usuarios
+
+### Prerrequisitos
+1. Sistema operativo: Idealmente, un sistema tipo UNIX (Linux o macOS), ya que la biblioteca MLX42 generalmente es compatible con estos entornos.
+2. Dependencias: 
+    -  Compilador GCC: Versión moderna de GCC (idealmente GCC 8 o superior) para asegurar compatibilidad con las opciones de compilación (-Wall -Wextra -Werror).
+    - CMake: Necesitarás CMake para construir la biblioteca MLX42.
+    - Libc y GLFW: MLX42 usa OpenGL, por lo que es importante tener las librerías de libGL y glfw instaladas.
+3. Obviamos demás especificaciones como CPU, RAM y Almacenamiento, pues el programa requiere de recursos muy básicos
+
+### Cómo usar
+1. Clonar el repositorio
+2. Compilar con make
+3. Ejecutar ./so_long + nombre_mapa_en_resources/maps/valid
+
+### Nuevo mapa
+Si se quiere crear un nuevo mapa hay que introducirlo en la ruta: resources/maps/valid y deberá cumplir con las Restricciones anteriormente mencionadas
+
+## Desarrolladores
+
+### Algoritmo
+1. Checkeo de argumentos. (Debe haber exactarmente 2 y debe tener la extensión correcta)
+    - Error 1. Errores en las reservas de memoria de estructuras.
+    - Error 2. Error en el numero de argumentos / Extension de fichero incorrecta  
+2. Parseo mapa. El mapa del fichero deberá cumplir todas las características antes de ser procesado
+    - Error 3. Error en la apertura del fichero que le pasamos por parametro
+    - Error 4. El mapa está vacío
+    - Error 5. Error leyendo las líneas del fichero
+    - Error 6. El mapa no es rectangular
+    - Error 7. El caracter introducido no es valido
+    - Error 8. Incorrecto numero de objetos
+    - Error 9. Error en los bordes del juego
+    - Error 10. No hay un camino válido  
+3. Inicialización mapa. Una vez sabemos que el mapa es válido, pasamos a visualizarlo gráficamente.
+    - Error 11. Imposible inicializar la librería gráfica
+    - Error 12. Imposible inicializar la ventana
+    - Error 13. Libreria no puede abrir imagenes
+    - Error 14. Libreria no puede pintar imagenes
+4. Deteccion de teclas. Permitirá que nuestro personaje se peuda desplazar por el mapa.
+5. Implementar el bucle del juego
+6. Establecer una correcta terminación del juego
+7. Librar la memoria asignada de todos los recursos
